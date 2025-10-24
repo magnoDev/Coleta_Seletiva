@@ -6,6 +6,11 @@ const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        parent: 'game-container',
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     scene: [PreloadScene, GameScene, EndScene],
     physics: {
         default: "arcade",
