@@ -66,8 +66,6 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create() {
-        const gameWidth = this.scale.width;
-        const gameHeight = this.scale.height;
 
         this.add.image(400, 300, "background").setOrigin(0.5).setDisplaySize(800, 600);
         this.add.rectangle(400, 30, 800, 40, 0x87CAEA).setOrigin(0.5).setAlpha(0.5); // Fundo para o placar
