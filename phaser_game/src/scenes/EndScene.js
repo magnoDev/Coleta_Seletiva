@@ -12,11 +12,15 @@ export default class EndScene extends Phaser.Scene {
         this.add.image(400, 300, "background").setOrigin(0.5).setDisplaySize(800, 600);
         this.add.rectangle(400, 300, 600, 300, 0x87CAEA).setOrigin(0.5).setAlpha(0.5); // Fundo para mensagem
 
+        let emoji;
+        
         let message;
         if (this.isWin) {
             message = "Parabéns!\nVocê é um mestre da reciclagem!";
+            emoji = 'win_game';
         } else {
             message = "Fim de Jogo!\nTente novamente.";
+            emoji = 'lose_game';
         }
 
         this.add.text(this.game.config.width / 2, this.game.config.height / 2 - 100, message, {
@@ -25,6 +29,8 @@ export default class EndScene extends Phaser.Scene {
             fill: "#fff",
             align: "center"
         }).setOrigin(0.5);
+
+        this.add.image(400, 130, emoji).setOrigin(0.5).scale = 0.5;
 
         this.add.text(this.game.config.width / 2, this.game.config.height / 2, "Pontuação Total: " + this.finalScore, {
             fontSize: "48px",

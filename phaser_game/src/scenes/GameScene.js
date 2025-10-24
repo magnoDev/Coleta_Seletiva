@@ -124,7 +124,7 @@ export default class GameScene extends Phaser.Scene {
     displayBins(binKeys) {
         const binWidth = 80;
         const binHeight = 100;
-        const padding = 20;
+        const padding = 60;
         const totalWidth = binKeys.length * (binWidth + padding) - padding;
         let startX = (this.game.config.width - totalWidth) / 2 + binWidth / 2;
         const y = this.game.config.height - 100; // Posição inferior
@@ -133,7 +133,6 @@ export default class GameScene extends Phaser.Scene {
             const textureKey = "bin_" + key;
 
             const bin = this.physics.add.sprite(startX, y, textureKey).setInteractive();
-            //bin.setScale(0.8); // Ajuste a escala para o tamanho dos sprites
             bin.body.setAllowGravity(false);
             bin.body.setImmovable(true);
             bin.binType = this.phaseConfig[this.currentPhase].binMapping[key];
@@ -154,7 +153,6 @@ export default class GameScene extends Phaser.Scene {
                 const trash = this.physics.add.image(x, y, randomImageKey).setInteractive({
                     draggable: true
                 });
-                //trash.setScale(0.5);
                 trash.body.setAllowGravity(false);
                 trash.originalX = x;
                 trash.originalY = y;

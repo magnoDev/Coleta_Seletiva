@@ -38,6 +38,10 @@ export default class PreloadScene extends Phaser.Scene {
 
         // Imagem de fundo (placeholder)
         this.load.image('background', 'assets/background.png');
+
+        //Emojis
+        this.load.image('win_game', 'assets/win_game.png');
+        this.load.image('lose_game', 'assets/lose_game.png');
     }
 
     create() {
