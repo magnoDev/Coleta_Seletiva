@@ -4,13 +4,9 @@ import EndScene from "./scenes/EndScene.js";
 
 // Calcular dimensões responsivas
 function getGameDimensions() {
-    const gameContainer = document.getElementById('game');
-    if (!gameContainer) {
-        return { width: 800, height: 600 };
-    }
 
-    const containerWidth = gameContainer.parentElement.clientWidth;
-    const containerHeight = gameContainer.parentElement.clientHeight;
+    const containerWidth = 800;
+    const containerHeight = 600;
 
     // Manter a proporção 4:3
     const aspectRatio = 4 / 3;
@@ -53,10 +49,4 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
-
-// // Ajustar o tamanho do jogo quando a janela é redimensionada
-// window.addEventListener('resize', () => {
-//     const newDimensions = getGameDimensions();
-//     game.scale.resize(newDimensions.width, newDimensions.height);
-// });
 
