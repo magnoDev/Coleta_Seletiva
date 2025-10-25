@@ -2,25 +2,61 @@ import PreloadScene from "./scenes/PreloadScene.js";
 import GameScene from "./scenes/GameScene.js";
 import EndScene from "./scenes/EndScene.js";
 
+// Calcular dimensões responsivas
+function getGameDimensions() {
+    const gameContainer = document.getElementById('game');
+    if (!gameContainer) {
+        return { width: 800, height: 600 };
+    }
+
+    const containerWidth = gameContainer.parentElement.clientWidth;
+    const containerHeight = gameContainer.parentElement.clientHeight;
+
+    // Manter a proporção 4:3
+    const aspectRatio = 4 / 3;
+    let width = containerWidth - 20; // Margem
+    let height = width / aspectRatio;
+
+    // Se a altura exceder o container, ajustar
+    if (height > containerHeight - 20) {
+        height = containerHeight - 20;
+        width = height * aspectRatio;
+    }
+
+    // Limitar a um máximo razoável
+    if (width > 800) width = 800;
+    if (height > 600) height = 600;
+
+    return { width: Math.floor(width), height: Math.floor(height) };
+}
+
+const dimensions = getGameDimensions();
+
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    scale: {
-        mode: Phaser.Scale.FIT,
-        parent: 'game-container',
-        autoCenter: Phaser.Scale.CENTER_BOTH,
-        min: { width: 320, height: 480 },
-        max: { width: 1920, height: 1400 }
-    },
+    width: dimensions.width,
+    height: dimensions.height,
+    parent: 'game',
     scene: [PreloadScene, GameScene, EndScene],
     physics: {
         default: "arcade",
         arcade: {
             debug: false
         }
+    },
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        expandParent: false,
+        fullscreenTarget: 'parent'
     }
 };
 
 const game = new Phaser.Game(config);
+
+// Ajustar o tamanho do jogo quando a janela é redimensionada
+window.addEventListener('resize', () => {
+    const newDimensions = getGameDimensions();
+    game.scale.resize(newDimensions.width, newDimensions.height);
+});
 

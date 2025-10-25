@@ -1,23 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-        }
-        #game-container {
-            width: 100vw;
-            height: 100vh;
-        }
-    </style>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Coleta Seletiva</title>
     <script src="node_modules/phaser/dist/phaser.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #game {
+            width: 100%;
+            height: auto;
+        }
+
+        .instructions-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 640px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .instructions-panel h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .instruction-item {
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .instruction-item h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+
+        .instruction-item p {
+            font-size: 13px;
+            opacity: 0.95;
+        }
+        
+        .scoring-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .scoring-info p {
+            margin-bottom: 5px;
+        }
+
+        .correct {
+            color: #90EE90;
+        }
+
+        .incorrect {
+            color: #FFB6C6;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 1024px) {
+
+            .instructions-panel {
+                max-height: 300px;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .instructions-panel {
+                padding: 15px;
+                max-height: 250px;
+            }
+
+            .instructions-panel h2 {
+                font-size: 18px;
+            }
+
+            .instruction-item {
+                font-size: 12px;
+            }
+
+            .instruction-item h3 {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .instructions-panel {
+                padding: 12px;
+                max-height: 200px;
+                font-size: 11px;
+            }
+
+            .instructions-panel h2 {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .instruction-item {
+                margin-bottom: 10px;
+                font-size: 11px;
+            }
+
+            .instruction-item h3 {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="game-container"></div>
+
+    <div class="instructions-panel">
+        <h2>📋 Instruções</h2>
+
+        <div class="instruction-item">
+            <h3>🎯 Objetivo</h3>
+            <p>Vamos aprender um pouco sobre a importância da coleta seletiva!</p>
+        </div>
+
+        <div class="instruction-item">
+            <h3>🖱️ Como Jogar</h3>
+            <p>Arraste os resíduos e solte-os na lixeira correta.</p>
+        </div>
+
+        <div class="instruction-item">
+            <h3>⏱️ Tempo</h3>
+            <p>Cada fase dura 60 segundos. Separe todos os resíduos antes do tempo acabar para avançar!</p>
+        </div>
+
+        <div class="instruction-item">
+            <h3>📊 Pontuação</h3>
+            <div class="scoring-info">
+                <p><span class="correct">✓ Acerto: +10 pontos</span></p>
+                <p><span class="incorrect">✗ Erro: -5 pontos</span></p>
+            </div>
+        </div>
+
+        <div class="instruction-item" style="margin-top: 15px;">
+            <h3>🏆 Vitória</h3>
+            <p>Complete todas as fases separando corretamente todos os resíduos para vencer o jogo!</p>
+        </div>
+    </div>
+
     <script type="module" src="src/main.js"></script>
 </body>
 </html>
+
