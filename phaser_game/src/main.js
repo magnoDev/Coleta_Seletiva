@@ -54,9 +54,9 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-// Ajustar o tamanho do jogo quando a janela é redimensionada
-window.addEventListener('resize', () => {
-    const newDimensions = getGameDimensions();
-    game.scale.resize(newDimensions.width, newDimensions.height);
-});
+// // Ajustar o tamanho do jogo quando a janela é redimensionada
+// window.addEventListener('resize', () => {
+//     const newDimensions = getGameDimensions();
+//     game.scale.resize(newDimensions.width, newDimensions.height);
+// });
 
